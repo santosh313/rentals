@@ -120,7 +120,12 @@ app_license = "mit"
 # permission_query_conditions = {
 # 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
 # }
-#
+
+# permission_query_conditions = {
+# 	"Vehicle": "rentals.api.get_query_conditions_for_vehicle",
+# }
+
+
 # has_permission = {
 # 	"Event": "frappe.desk.doctype.event.event.has_permission",
 # }
@@ -137,6 +142,14 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
+doc_events = {
+	"ToDo": {
+		"before_insert": "rentals.api.get_emoji"
+		
+	}
+}
+
+
 # doc_events = {
 # 	"*": {
 # 		"on_update": "method",
@@ -147,6 +160,25 @@ app_license = "mit"
 
 # Scheduled Tasks
 # ---------------
+
+
+# scheduler_events = {
+# 	"weekly": [
+# 		"rentals.api.send_payment_reminders"
+# 	],
+# }
+
+scheduler_events = {
+    "Cron":{
+        "30 15 * * 3":[
+		"rentals.api.send_payment_reminders"
+	]
+
+    
+    }
+,
+}
+
 
 # scheduler_events = {
 # 	"all": [

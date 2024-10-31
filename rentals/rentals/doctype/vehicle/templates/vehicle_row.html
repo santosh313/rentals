@@ -1,0 +1,56 @@
+<!-- This is a sample custom list template for the Vehicle doctype -->
+
+<style>
+    .vehicle-card {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 15px;
+        margin: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+        text-align: center;
+    }
+    .vehicle-card:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .vehicle-image {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+    .vehicle-details {
+        margin: 5px 0;
+    }
+</style>
+
+<div class="vehicle-card">
+    <div>
+        {% if doc.vehicle_image %}
+            <img src="{{ doc.vehicle_image }}" alt="{{ doc.title }}" class="vehicle-image">
+        {% else %}
+            <img src="/assets/frappe/images/default-placeholder.png" alt="No Image" class="vehicle-image">
+        {% endif %}
+    </div>
+    <div class="vehicle-details">
+        <strong>Title:</strong> {{ doc.title or doc.name }}
+    </div>
+    <div class="vehicle-details">
+        <strong>Make:</strong> {{ doc.make }}
+    </div>
+    <div class="vehicle-details">
+        <strong>Model:</strong> {{ doc.model }}
+    </div>
+    <div class="vehicle-details">
+        <strong>Year:</strong> {{ doc.year }}
+    </div>
+    <div class="vehicle-details">
+        <strong>License Plate:</strong> {{ doc.license_plate }}
+    </div>
+    <div class="vehicle-details">
+        <strong>Color:</strong> {{ doc.color }}
+    </div>
+    <div class="vehicle-details">
+        <a href="/{{ doc.route }}" class="btn btn-primary">View Details</a>
+    </div>
+</div>
